@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
-import ProductList from "./pages/ProductList";
 import SellerDashboard from "./pages/SellerDashboard";
 import Checkout from "./pages/Checkout";
 import { Toaster } from "@/components/ui/sonner";
@@ -76,10 +75,6 @@ function App() {
               isAuthenticated={user?.token}
             />
           }
-        />
-        <Route
-          path="/products"
-          element={<PrivateRoute element={<ProductList />} isAuthenticated={user?.token} />}
         />
         <Route
           path="/seller-dashboard"
