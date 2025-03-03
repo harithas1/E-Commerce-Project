@@ -21,7 +21,7 @@ const add_product = async (req, res) => {
       image,
     });
 
-    return res.status(201).json(newProduct); 
+    return res.status(201).json(newProduct);
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Something went wrong!" });
@@ -52,7 +52,7 @@ const update_product = async (req, res) => {
       image,
     });
 
-    return res.status(200).json(updatedProduct); 
+    return res.status(200).json(updatedProduct);
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Something went wrong!" });
@@ -63,13 +63,12 @@ const delete_product = async (req, res) => {
   try {
     const { productId, sellerId } = req.body;
 
-    const deletedProduct = await deleteProduct(
-      parseInt(productId),
-      parseInt(sellerId
-    )
-    );
+    const deletedProduct = await deleteProduct({
+      productId: parseInt(productId),
+      sellerId: parseInt(sellerId),
+    });
 
-    return res.status(200).json(deletedProduct); 
+    return res.status(200).json(deletedProduct);
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Something went wrong!" });
@@ -82,7 +81,7 @@ const list_products = async (req, res) => {
 
     const products = await listProducts(parseInt(sellerId));
 
-    return res.status(200).json(products); 
+    return res.status(200).json(products);
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Something went wrong!" });
@@ -95,7 +94,7 @@ const get_product_details = async (req, res) => {
 
     const product = await getProductDetails(parseInt(productId));
 
-    return res.status(200).json(product); 
+    return res.status(200).json(product);
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Something went wrong!" });
