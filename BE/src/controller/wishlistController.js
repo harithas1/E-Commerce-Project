@@ -19,7 +19,7 @@ const add_to_wishlist = async (req, res) => {
 const remove_from_wishlist = async (req, res) => {
   try {
     const { userId, productId } = req.body; 
-    const wishlist = await removeFromWishlist(userId, productId);
+    const wishlist = await removeFromWishlist(parseInt(userId), parseInt(productId));
 
     if (!wishlist) {
       return res.status(404).json({ error: "Wishlist item not found" });
