@@ -91,7 +91,7 @@ const updateProduct = async ({
 
 // to delete product
 
-const deleteProduct = async (productId, sellerId) => {
+const deleteProduct = async ({productId, sellerId }) => {
   console.log("Deleting product...");
 
   const product = await prisma.product.findUnique({

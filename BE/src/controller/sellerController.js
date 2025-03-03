@@ -65,7 +65,8 @@ const delete_product = async (req, res) => {
 
     const deletedProduct = await deleteProduct(
       parseInt(productId),
-      parseInt(sellerId)
+      parseInt(sellerId
+    )
     );
 
     return res.status(200).json(deletedProduct); 
