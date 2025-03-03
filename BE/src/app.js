@@ -9,6 +9,8 @@ const sellerRoutes = require("./routes/sellerRoutes");
 
 const app = express();
 
+app.use(cors());
+
 // -----------------------------------------------
 // app.use(
 //   cors({
