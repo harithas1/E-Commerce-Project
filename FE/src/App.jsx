@@ -7,14 +7,13 @@ import SellerDashboard from "./pages/SellerDashboard";
 import Checkout from "./pages/Checkout";
 import { Toaster } from "@/components/ui/sonner";
 
-// PrivateRoute component to protect routes
 const PrivateRoute = ({ element, isAuthenticated }) => {
   return isAuthenticated ? element : <Navigate to="/login" />;
 };
 
 function App() {
-  const [user, setUser] = useState(null); // Set default state to null instead of empty object
-  const [loading, setLoading] = useState(true); // Loading state to prevent premature rendering
+  const [user, setUser] = useState(null); 
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -46,7 +45,7 @@ function App() {
   };
 
   if (loading) {
-    return <div>Loading...</div>; // Optionally display loading text while checking token
+    return <div>Loading...</div>; 
   }
 
   return (

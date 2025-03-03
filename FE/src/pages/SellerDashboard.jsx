@@ -25,7 +25,7 @@ const CATEGORY_API =
   "https://e-commerce-project-l7gm.onrender.com/api/products/category-list";
 
 const SellerDashboard = ({ user }) => {
-  const [activeTab, setActiveTab] = useState("sell");
+  const [activeTab, setActiveTab] = useState("view");
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [formData, setFormData] = useState({
