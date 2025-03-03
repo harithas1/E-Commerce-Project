@@ -90,16 +90,17 @@ const updateProduct = async ({
 
 
 // to delete product
-
-const deleteProduct = async (params) => {
-  const { productId, sellerId } = params; // Extract values properly
-
-  if (!productId || isNaN(productId)) {
-    throw new Error("Invalid productId");
-  }
+const deleteProduct = async ({ productId, sellerId }) => {
+  console.log("Deleting product...");
 
   const product = await prisma.product.findUnique({
     where: { id: productId },
+    include: {
+      cartItems: true,
+      wishlistItems: true,
+      orders: true,
+      reviews: true,
+    },
   });
 
   if (!product) {
@@ -110,9 +111,28 @@ const deleteProduct = async (params) => {
     throw new Error("You do not have permission to delete this product");
   }
 
-  return await prisma.product.delete({
+  await prisma.cart.deleteMany({
+    where: { productId: productId },
+  });
+
+  await prisma.wishlist.deleteMany({
+    where: { productId: productId },
+  });
+
+  await prisma.order.deleteMany({
+    where: { productId: productId },
+  });
+
+  await prisma.review.deleteMany({
+    where: { productId: productId },
+  });
+
+  // Now, safely delete the product
+  const deletedProduct = await prisma.product.delete({
     where: { id: productId },
   });
+
+  return deletedProduct;
 };
 
 
