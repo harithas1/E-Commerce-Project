@@ -1,0 +1,117 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://e_commerce_db_lmbk_user:fOeoAVgEXIYUgXrpjuFtF9FGZKQwS6tB@dpg-cusb4qqj1k6c73f37ngg-a.oregon-postgres.render.com:5432/e_commerce_db_lmbk"
+}
+
+model User {
+  id            Int      @id @default(autoincrement())
+  name          String
+  email         String   @unique
+  password      String
+  role          Role
+  emailVerified Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  products      Product[]
+  orders        Order[]
+  reviews       Review[]
+  cartItems     Cart[]
+  wishlistItems Wishlist[]
+}
+
+model Product {
+  id          Int      @id @default(autoincrement())
+  title       String   
+  description String
+  categoryId  Int
+  price       Float
+  discount    Float    @default(0.0)
+  rating      Float    @default(0.0)
+  stock       Int
+  image       String
+  sellerId    Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  seller        User       @relation(fields: [sellerId], references: [id])
+  category      Category   @relation(fields: [categoryId], references: [id])
+  reviews       Review[]
+  orders        Order[]
+  cartItems     Cart[]
+  wishlistItems Wishlist[]
+}
+
+model Category {
+  id       Int       @id @default(autoincrement())
+  name     String    @unique
+  products Product[]
+}
+
+model Cart {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  productId Int
+  quantity  Int
+  createdAt DateTime @default(now())
+
+  user    User    @relation(fields: [userId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+}
+
+model Wishlist {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  productId Int
+  createdAt DateTime @default(now())
+
+  user    User    @relation(fields: [userId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+
+  @@unique([userId, productId])
+}
+
+model Order {
+  id              Int         @id @default(autoincrement())
+  userId          Int
+  productId       Int
+  quantity        Int
+  totalAmount     Float
+  status          OrderStatus
+  shippingAddress String
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  user    User    @relation(fields: [userId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+}
+
+model Review {
+  id            Int      @id @default(autoincrement())
+  rating        Int
+  comment       String
+  date          DateTime @default(now())
+  reviewerName  String
+  reviewerEmail String
+  productId     Int
+
+  product Product @relation(fields: [productId], references: [id])
+  user    User?   @relation(fields: [userId], references: [id])
+  userId  Int?
+}
+
+enum Role {
+  SELLER
+  CUSTOMER
+}
+
+enum OrderStatus {
+  PENDING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
