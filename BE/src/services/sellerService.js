@@ -91,8 +91,12 @@ const updateProduct = async ({
 
 // to delete product
 
-const deleteProduct = async ({productId, sellerId }) => {
-  console.log("Deleting product...");
+const deleteProduct = async (params) => {
+  const { productId, sellerId } = params; // Extract values properly
+
+  if (!productId || isNaN(productId)) {
+    throw new Error("Invalid productId");
+  }
 
   const product = await prisma.product.findUnique({
     where: { id: productId },
@@ -106,11 +110,9 @@ const deleteProduct = async ({productId, sellerId }) => {
     throw new Error("You do not have permission to delete this product");
   }
 
-  const deletedProduct = await prisma.product.delete({
+  return await prisma.product.delete({
     where: { id: productId },
   });
-
-  return deletedProduct;
 };
 
 

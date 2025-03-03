@@ -62,13 +62,15 @@ const update_product = async (req, res) => {
 const delete_product = async (req, res) => {
   try {
     const { productId, sellerId } = req.body;
+    if (!productId || isNaN(productId)) {
+      return res.status(400).json({ error: "Invalid productId" });
+    }
 
-    const deletedProduct = await deleteProduct({
+    const delProduct = await deleteProduct({
       productId: parseInt(productId),
       sellerId: parseInt(sellerId),
     });
-
-    return res.status(200).json(deletedProduct);
+    return res.status(200).json(delProduct);
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Something went wrong!" });
