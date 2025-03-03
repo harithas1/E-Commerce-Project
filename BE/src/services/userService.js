@@ -5,8 +5,6 @@ const sendEmail = require("../utils/mailer");
 
 const JWT_SECRET = "subbu7hari27usha01gowthu01hema29"; // Move this to .env in production
 
-
-
 // Register User
 const registerUser = async ({ name, email, password, role }) => {
   // Check if email is already in use
@@ -25,7 +23,7 @@ const registerUser = async ({ name, email, password, role }) => {
   });
 
   // to Send verification email
-  const verificationLink = `https://e-commerce-HMSK.netlify.app/api/auth/verify-email?token=${emailVerificationToken}`;
+  const verificationLink = `https://e-commerce-hmsk.netlify.app/api/auth/verify-email?token=${emailVerificationToken}`;
   const emailContent = `
     <h2>Verify Your Email</h2>
     <p>Click the link below to verify your email:</p>
@@ -74,10 +72,7 @@ const loginUser = async ({ email, password }) => {
   return { message: "Login successful", token, user };
 };
 
-
-
 // -------------------------------------------------------------
-
 
 // Create Review
 const createReview = async ({ userId, productId, rating, comment }) => {
@@ -96,7 +91,6 @@ const createReview = async ({ userId, productId, rating, comment }) => {
   });
   return review;
 };
-
 
 // -------------------------------------------------------------
 
@@ -138,10 +132,6 @@ const createOrder = async ({ userId, productId, quantity }) => {
   });
 };
 
-
-
-
-
 // get all products
 const getAllProducts = async ({
   limit = 10,
@@ -173,11 +163,7 @@ const getAllProducts = async ({
   return { products, total };
 };
 
-
 // ------------------------------------------------------------
-
-
-
 
 const getHomePageProducts = async (limit = 10) => {
   console.log("Fetching home page products...");
@@ -216,10 +202,6 @@ const getHomePageProducts = async (limit = 10) => {
     throw new Error("Failed to fetch home page products");
   }
 };
-
-
-
-
 
 const filterProducts = async ({
   categoryId,
@@ -279,12 +261,7 @@ const filterProducts = async ({
   }
 };
 
-
 // ------------------------------------------------------------
-
-
-
-
 
 module.exports = {
   registerUser,
@@ -295,6 +272,4 @@ module.exports = {
   getAllProducts,
   getHomePageProducts,
   filterProducts,
-  
 };
-

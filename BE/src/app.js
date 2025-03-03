@@ -11,7 +11,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://e-commerce-HMSK.netlify.app",
+    origin: "https://e-commerce-hmsk.netlify.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type"],
     credentials: true,
@@ -19,7 +19,10 @@ app.use(
 );
 
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://e-commerce-HMSK.netlify.app");
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://e-commerce-hmsk.netlify.app"
+  );
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
   res.header("Access-Control-Allow-Credentials", "true");
@@ -31,8 +34,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.json()); 
-
+app.use(express.json());
 
 // Add user routes
 app.use("/api/auth", userRoutes);
@@ -43,27 +45,17 @@ app.use("/api/products", productRoutes);
 // cart routes
 app.use("/api/cart", cartRoutes);
 
-
 // Add review routes
 app.use("/api/reviews", reviewRoutes);
 
-
 // Add seller routes
 app.use("/api/seller", sellerRoutes);
-
 
 app.get("/test", (req, res) => {
   res.send("Test route works!");
 });
 
-
-
-
-
-
 // Add wishlist routes
 app.use("/api/wishlist", wishlistRoutes);
 
 module.exports = app;
-
-
