@@ -24,7 +24,7 @@ export default function ProductDetails() {
       try {
         setLoading(true);
         const response = await axios.get(
-          `https://e-commerce-ecuo.onrender.com/api/products/${id}`
+          `https://e-commerce-project-l7gm.onrender.com/api/products/${id}`
         );
         setProduct(response.data);
       } catch (error) {

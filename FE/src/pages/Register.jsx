@@ -26,11 +26,10 @@ function Register() {
     setLoading(true);
     setMessage({ type: "", text: "" }); // Clear previous messages
     console.log(formData);
-    
 
     try {
       const response = await axios.post(
-        "https://e-commerce-ecuo.onrender.com/api/auth/register",
+        "https://e-commerce-project-l7gm.onrender.com/api/auth/register",
         formData
       );
 

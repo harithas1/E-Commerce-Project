@@ -1,6 +1,6 @@
 1. User Routes
 User Registration (POST)
-Endpoint: POST https://e-commerce-ecuo.onrender.com/api/auth/register
+Endpoint: POST https://e-commerce-project-l7gm.onrender.com/api/auth/register
 Description: Registers a new user.
 Request Body:
 
@@ -25,7 +25,7 @@ Response (Failure):
 
 
 Verify Email (GET)
-Endpoint: GET https://e-commerce-ecuo.onrender.com/api/auth/verify-email
+Endpoint: GET https://e-commerce-project-l7gm.onrender.com/api/auth/verify-email
 Description: Verifies the user's email using a verification token.
 Query Parameter: token=your_verification_token
 Response (Success):
@@ -42,7 +42,7 @@ Response (Failure):
 ------------------------------------------------------------------------------------------------------------
 
 Login User (POST)
-Endpoint: POST https://e-commerce-ecuo.onrender.com/api/auth/login
+Endpoint: POST https://e-commerce-project-l7gm.onrender.com/api/auth/login
 Description: Authenticates the user and returns a JWT token.
 Request Body:
 
@@ -64,7 +64,7 @@ Response (Failure):
 ------------------------------------------------------------------------------------------------------------
 
 Create Review for Product (POST)
-Endpoint: POST https://e-commerce-ecuo.onrender.com/api/reviews
+Endpoint: POST https://e-commerce-project-l7gm.onrender.com/api/reviews
 Description: Allows users to create reviews for products.
 Request Body:
 
@@ -96,7 +96,7 @@ Response (Failure):
 ------------------------------------------------------------------------------------------------------------
 
 Create Order (POST)
-Endpoint: POST https://e-commerce-ecuo.onrender.com/api/orders
+Endpoint: POST https://e-commerce-project-l7gm.onrender.com/api/orders
 Description: Allows users to place an order for products.
 Request Body:
 
@@ -126,14 +126,14 @@ Response (Failure):
 ------------------------------------------------------------------------------------------------------------
 
 Get All Products (GET)
-Endpoint: GET https://e-commerce-ecuo.onrender.com/api/products/list
+Endpoint: GET https://e-commerce-project-l7gm.onrender.com/api/products/list
 Description: Retrieves a list of all products, with optional filters for search, category, etc.
 Query Parameters:
 limit (optional): Number of products per page (default 10)
 skip (optional): Pagination offset (default 0)
 search (optional): Search query for product name or description
 categoryId (optional): Filter by category ID
-Example URL: GET https://e-commerce-ecuo.onrender.com/api/products?limit=10&search=phone
+Example URL: GET https://e-commerce-project-l7gm.onrender.com/api/products?limit=10&search=phone
 Response (Success):
 
 {
@@ -162,7 +162,7 @@ Response (Failure):
 
 2. Cart Routes
 Add Product to Cart (POST)
-Endpoint: POST https://e-commerce-ecuo.onrender.com/api/cart
+Endpoint: POST https://e-commerce-project-l7gm.onrender.com/api/cart
 Description: Adds a product to the user's cart.
 Request Body:
 
@@ -185,7 +185,7 @@ Response (Failure):
 ------------------------------------------------------------------------------------------------------------
 
 Get Cart Items (GET)
-Endpoint: GET https://e-commerce-ecuo.onrender.com/api/cart
+Endpoint: GET https://e-commerce-project-l7gm.onrender.com/api/cart
 Description: Retrieves all items in the user's cart.
 Response (Success):
 
@@ -210,7 +210,7 @@ Response (Failure):
 ------------------------------------------------------------------------------------------------------------
 
 Remove Item from Cart (DELETE)
-Endpoint: DELETE https://e-commerce-ecuo.onrender.com/api/cart
+Endpoint: DELETE https://e-commerce-project-l7gm.onrender.com/api/cart
 Description: Removes a product from the user's cart.
 Request Body:
 
@@ -234,7 +234,7 @@ Response (Failure):
 
 3. Product Routes
 Get Product Details (GET)
-Endpoint: GET https://e-commerce-ecuo.onrender.com/api/products/{productId}
+Endpoint: GET https://e-commerce-project-l7gm.onrender.com/api/products/{productId}
 Description: Retrieves the details of a single product.
 Response (Success):
 
@@ -266,7 +266,7 @@ Response (Failure):
 
 4. Order Routes
 Get All Orders (GET)
-Endpoint: GET https://e-commerce-ecuo.onrender.com/api/orders
+Endpoint: GET https://e-commerce-project-l7gm.onrender.com/api/orders
 Description: Retrieves all orders for a user.
 Response (Success):
 
@@ -291,7 +291,7 @@ Response (Failure):
 
 5. Payment Routes
 Create Payment (POST)
-Endpoint: POST https://e-commerce-ecuo.onrender.com/api/payment
+Endpoint: POST https://e-commerce-project-l7gm.onrender.com/api/payment
 Description: Creates a payment for an order.
 Request Body:
 
@@ -327,11 +327,11 @@ Response (Failure):
 
  Notes: Using /homepage-products API
 Endpoint URL:
---->GET ---> https://e-commerce-ecuo.onrender.com/api/products/homepage-products?limit=5
+--->GET ---> https://e-commerce-project-l7gm.onrender.com/api/products/homepage-products?limit=5
 This fetches best-selling and newest arrival products. The limit query parameter (optional) controls how many products to fetch.
 
 Example Request:
---->GET https://e-commerce-ecuo.onrender.com/api/products/homepage-products?limit=3
+--->GET https://e-commerce-project-l7gm.onrender.com/api/products/homepage-products?limit=3
 
 
 Expected Response (JSON):
@@ -390,7 +390,7 @@ If something goes wrong, the response will be:
 
 
 ✅ 
-Endpoint: GET  https://e-commerce-ecuo.onrender.com/api/products/filter
+Endpoint: GET  https://e-commerce-project-l7gm.onrender.com/api/products/filter
 Query Parameters:
 categoryId (optional) → Filter by category
 minPrice (optional) → Minimum price
@@ -422,7 +422,7 @@ json
 ------------------------------------------------------------------------------------------
 
 ✅ How It Works
-Endpoint: GET  https://e-commerce-ecuo.onrender.com/api/products/filter
+Endpoint: GET  https://e-commerce-project-l7gm.onrender.com/api/products/filter
 Query Parameters:
 categoryId (optional) → Filter by category
 minPrice (optional) → Minimum price

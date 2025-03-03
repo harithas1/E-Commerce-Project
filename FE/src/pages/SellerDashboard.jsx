@@ -20,9 +20,9 @@ import {
 import { useNavigate } from "react-router-dom";
 import { LogOut } from "lucide-react";
 
-const API_BASE_URL = "https://e-commerce-ecuo.onrender.com/api/seller";
+const API_BASE_URL = "https://e-commerce-project-l7gm.onrender.com/api/seller";
 const CATEGORY_API =
-  "https://e-commerce-ecuo.onrender.com/api/products/category-list";
+  "https://e-commerce-project-l7gm.onrender.com/api/products/category-list";
 
 const SellerDashboard = ({ user }) => {
   const [activeTab, setActiveTab] = useState("sell");
@@ -84,8 +84,6 @@ const SellerDashboard = ({ user }) => {
     }
   };
 
-
-
   const handleProductAction = async (action, product = null) => {
     try {
       if (action === "add") {
@@ -99,7 +97,7 @@ const SellerDashboard = ({ user }) => {
         alert("Product added successfully!");
       } else if (action === "update" && product) {
         console.log(product);
-        
+
         await axios.put(`${API_BASE_URL}/update`, {
           ...product,
           productId: product.id,
@@ -135,21 +133,21 @@ const SellerDashboard = ({ user }) => {
     });
   };
 
-
   const goToDashboard = () => {
     navigate("/dashboard");
-  }
+  };
 
   return (
     <div className="p-6">
-    
       <div className="flex gap-4 border-b pb-2">
         {["profile", "add", "update", "delete", "view"].map((tab) => (
           <Button
             variant="outline"
             key={tab}
             className={`px-4 py-2 ${
-              activeTab === tab ? "bg-blue-600 text-white" : "bg-gray-200 text-blue-600"
+              activeTab === tab
+                ? "bg-blue-600 text-white"
+                : "bg-gray-200 text-blue-600"
             }`}
             onClick={() => setActiveTab(tab)}
           >
@@ -158,7 +156,6 @@ const SellerDashboard = ({ user }) => {
         ))}
       </div>
 
-     
       <div className="mt-6">
         {activeTab === "profile" && (
           <div className="space-y-4">
@@ -166,11 +163,13 @@ const SellerDashboard = ({ user }) => {
             <p>Name: {user.name}</p>
             <p>Email: {user.email}</p>
             <p>Role: {user.role}</p>
-            <Button variant="destructive" onClick={goToDashboard}><LogOut />Go to Dashboard</Button>
+            <Button variant="destructive" onClick={goToDashboard}>
+              <LogOut />
+              Go to Dashboard
+            </Button>
           </div>
         )}
 
-    
         {activeTab === "add" && (
           <div className="space-y-4">
             <h2 className="text-xl font-semibold">Add a New Product</h2>
@@ -232,7 +231,6 @@ const SellerDashboard = ({ user }) => {
           </div>
         )}
 
-      
         {(activeTab === "update" || activeTab === "delete") && (
           <div>
             <h2 className="text-xl font-semibold">Manage Your Products</h2>
@@ -254,7 +252,6 @@ const SellerDashboard = ({ user }) => {
                   <TableRow key={product.id}>
                     <TableCell>{product.id}</TableCell>
                     <TableCell>
-
                       <Input
                         name="title"
                         value={product.title}
@@ -342,7 +339,6 @@ const SellerDashboard = ({ user }) => {
           </div>
         )}
 
-       
         {activeTab === "view" && (
           <div>
             <h2 className="text-xl font-semibold">Your Products</h2>

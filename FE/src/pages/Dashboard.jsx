@@ -12,11 +12,19 @@ import {
 } from "@/components/ui/select";
 import { ShoppingCart, Heart, User, Star } from "lucide-react";
 import { Pagination } from "@/components/ui/pagination";
-import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from "@/components/ui/popover";
 import { formatPriceInINR } from "@/lib/utils";
 import ProductSection from "./ProductSection";
 import { addToCart, getCartDetails, removeFromCart } from "./Cart";
-import { addToWishlist, getWishlistDetails, removeFromWishlist } from "./Wishlist";
+import {
+  addToWishlist,
+  getWishlistDetails,
+  removeFromWishlist,
+} from "./Wishlist";
 import Automotive from "../assets/Automotive.png";
 import Books from "../assets/Books.png";
 import Electronics from "../assets/Electronics.png";
@@ -80,7 +88,7 @@ const Dashboard = ({ user }) => {
   const calculateTotalAmount = () => {
     let total = 0;
     cartItems.forEach((item) => {
-      total += item.quantity * item.product.price;  
+      total += item.quantity * item.product.price;
     });
     console.log("Total amount:", total);
     return total;
@@ -90,7 +98,7 @@ const Dashboard = ({ user }) => {
   const fetchCategories = async () => {
     try {
       const response = await axios.get(
-        "https://e-commerce-ecuo.onrender.com/api/products/category-list"
+        "https://e-commerce-project-l7gm.onrender.com/api/products/category-list"
       );
       setCategories(response.data || []);
     } catch (error) {
@@ -103,14 +111,14 @@ const Dashboard = ({ user }) => {
     try {
       setLoading(true);
       const response = await axios.get(
-        "https://e-commerce-ecuo.onrender.com/api/auth/homeproducts",
+        "https://e-commerce-project-l7gm.onrender.com/api/auth/homeproducts",
         { params: { limit: 10 } }
       );
 
       if (response.data) {
         setBestSellers(response.data.bestSellers || []);
         console.log("Best Sellers:", response.data.bestSellers);
-        
+
         setNewestArrivals(response.data.newestArrivals || []);
       }
     } catch (error) {
@@ -136,7 +144,7 @@ const Dashboard = ({ user }) => {
       };
 
       const response = await axios.get(
-        "https://e-commerce-ecuo.onrender.com/api/auth/filter",
+        "https://e-commerce-project-l7gm.onrender.com/api/auth/filter",
         { params }
       );
 
@@ -152,7 +160,7 @@ const Dashboard = ({ user }) => {
   }, [category, search, sortBy, order, minPrice, maxPrice, page]);
 
   // Update Cart and Wishlist after Add/Remove
-  const updateCartAndWishlist =  () => {
+  const updateCartAndWishlist = () => {
     getCartDetails({ id: user.id, setCartItems });
     getWishlistDetails({ id: user.id, setWishlistItems });
   };
@@ -203,28 +211,26 @@ const Dashboard = ({ user }) => {
   };
 
   // Handle Add to Cart
- const handleAddToCart = async () => {
-   setToggleCart((prev) => !prev);
+  const handleAddToCart = async () => {
+    setToggleCart((prev) => !prev);
 
-   // Optimistically update UI
-   if (toggleCart) {
-     setCartItems((prevCartItems) =>
-       prevCartItems.filter((item) => item.product.id !== selectedProduct.id)
-     );
-     await removeFromCart({ userId: user.id, productId: selectedProduct.id });
-   } else {
-     setCartItems((prevCartItems) => [
-       ...prevCartItems,
-       { product: selectedProduct, quantity: 1 },
-     ]);
-     await addToCart({ userId: user.id, productId: selectedProduct.id });
-   }
+    // Optimistically update UI
+    if (toggleCart) {
+      setCartItems((prevCartItems) =>
+        prevCartItems.filter((item) => item.product.id !== selectedProduct.id)
+      );
+      await removeFromCart({ userId: user.id, productId: selectedProduct.id });
+    } else {
+      setCartItems((prevCartItems) => [
+        ...prevCartItems,
+        { product: selectedProduct, quantity: 1 },
+      ]);
+      await addToCart({ userId: user.id, productId: selectedProduct.id });
+    }
 
-   // Refresh Cart Data from Server
-   updateCartAndWishlist();
- };
-
-
+    // Refresh Cart Data from Server
+    updateCartAndWishlist();
+  };
 
   // Handle Add to Wishlist
   const handleAddToWishlist = async () => {
@@ -253,11 +259,14 @@ const Dashboard = ({ user }) => {
     updateCartAndWishlist();
   };
 
-
-
   // Handle Add Review
   const handleAddReview = async () => {
-    await addingReview(user.id, selectedProduct.id, addReview.rating, addReview.comment);
+    await addingReview(
+      user.id,
+      selectedProduct.id,
+      addReview.rating,
+      addReview.comment
+    );
     setReviews([...reviews, addReview]);
     setAddReview({ rating: 0, comment: "" });
   };
@@ -283,9 +292,6 @@ const Dashboard = ({ user }) => {
     localStorage.removeItem("authToken");
     navigate("/login");
   };
-
-
-
 
   return (
     <div className="flex flex-col h-screen">

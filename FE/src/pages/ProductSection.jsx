@@ -15,7 +15,7 @@ const ProductSection = ({ title, products, loading, onProductClick, user }) => {
       try {
         // Fetch user's wishlist
         const wishlistResponse = await axios.get(
-          "https://e-commerce-ecuo.onrender.com/api/wishlist/get",
+          "https://e-commerce-project-l7gm.onrender.com/api/wishlist/get",
           { params: { userId: user.id } }
         );
         setWishlistedItems(
@@ -27,7 +27,7 @@ const ProductSection = ({ title, products, loading, onProductClick, user }) => {
 
         // Fetch user's cart items
         const cartResponse = await axios.get(
-          `https://e-commerce-ecuo.onrender.com/api/cart/items/${user.id}`
+          `https://e-commerce-project-l7gm.onrender.com/api/cart/items/${user.id}`
         );
         setCartItems(
           cartResponse.data.cartItems.reduce((acc, item) => {
@@ -51,9 +51,12 @@ const ProductSection = ({ title, products, loading, onProductClick, user }) => {
     if (isInWishlist) {
       // If the product is already in the wishlist, remove it
       axios
-        .delete("https://e-commerce-ecuo.onrender.com/api/wishlist/remove", {
-          data: { userId: user.id, productId: productId },
-        })
+        .delete(
+          "https://e-commerce-project-l7gm.onrender.com/api/wishlist/remove",
+          {
+            data: { userId: user.id, productId: productId },
+          }
+        )
         .then(() => {
           setWishlistedItems((prev) => ({ ...prev, [productId]: false }));
         })
@@ -63,7 +66,7 @@ const ProductSection = ({ title, products, loading, onProductClick, user }) => {
     } else {
       // If the product is not in the wishlist, add it
       axios
-        .post("https://e-commerce-ecuo.onrender.com/api/wishlist/add", {
+        .post("https://e-commerce-project-l7gm.onrender.com/api/wishlist/add", {
           userId: user.id,
           productId: productId,
         })
@@ -84,9 +87,12 @@ const ProductSection = ({ title, products, loading, onProductClick, user }) => {
     if (isInCart) {
       // If the product is already in the cart, remove it
       axios
-        .delete("https://e-commerce-ecuo.onrender.com/api/cart/remove", {
-          data: { userId: user.id, productId: productId },
-        })
+        .delete(
+          "https://e-commerce-project-l7gm.onrender.com/api/cart/remove",
+          {
+            data: { userId: user.id, productId: productId },
+          }
+        )
         .then(() => {
           setCartItems((prev) => ({ ...prev, [productId]: false }));
         })
@@ -96,7 +102,7 @@ const ProductSection = ({ title, products, loading, onProductClick, user }) => {
     } else {
       // If the product is not in the cart, add it
       axios
-        .post("https://e-commerce-ecuo.onrender.com/api/cart/add", {
+        .post("https://e-commerce-project-l7gm.onrender.com/api/cart/add", {
           userId: user.id,
           productId: productId,
           quantity: 1,

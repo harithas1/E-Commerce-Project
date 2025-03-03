@@ -44,20 +44,20 @@ module.exports = router;
 
 // all product endpoins with params/body
 
-// get all products  -- method: GET -- endpoint: https://e-commerce-ecuo.onrender.com/api/products/
+// get all products  -- method: GET -- endpoint: https://e-commerce-project-l7gm.onrender.com/api/products/
 
-// get product by id -- method: GET -- endpoint: https://e-commerce-ecuo.onrender.com/api/products/:productId
+// get product by id -- method: GET -- endpoint: https://e-commerce-project-l7gm.onrender.com/api/products/:productId
 
-// add product -- method: POST -- endpoint: https://e-commerce-ecuo.onrender.com/api/products/add -- body: {title, description, price, stock, categoryId}
+// add product -- method: POST -- endpoint: https://e-commerce-project-l7gm.onrender.com/api/products/add -- body: {title, description, price, stock, categoryId}
 
-// update product -- method: PUT -- endpoint: https://e-commerce-ecuo.onrender.com/api/products/update -- body: {productId, title, description, price, stock, image}
+// update product -- method: PUT -- endpoint: https://e-commerce-project-l7gm.onrender.com/api/products/update -- body: {productId, title, description, price, stock, image}
 
-// delete product -- method: DELETE -- endpoint: https://e-commerce-ecuo.onrender.com/api/products/delete -- body: {productId}
+// delete product -- method: DELETE -- endpoint: https://e-commerce-project-l7gm.onrender.com/api/products/delete -- body: {productId}
 
-// add category -- method: POST -- endpoint: https://e-commerce-ecuo.onrender.com/api/products/add-category -- body: {name}
+// add category -- method: POST -- endpoint: https://e-commerce-project-l7gm.onrender.com/api/products/add-category -- body: {name}
 
-// get all categories -- method: GET -- endpoint: https://e-commerce-ecuo.onrender.com/api/products/category-list
+// get all categories -- method: GET -- endpoint: https://e-commerce-project-l7gm.onrender.com/api/products/category-list
 
-// get home page products -- method: GET -- endpoint: https://e-commerce-ecuo.onrender.com/api/products/home
+// get home page products -- method: GET -- endpoint: https://e-commerce-project-l7gm.onrender.com/api/products/home
 
-// get all products of a seller -- method: GET -- endpoint: https://e-commerce-ecuo.onrender.com/api/products/list -- query: {sellerId}
+// get all products of a seller -- method: GET -- endpoint: https://e-commerce-project-l7gm.onrender.com/api/products/list -- query: {sellerId}

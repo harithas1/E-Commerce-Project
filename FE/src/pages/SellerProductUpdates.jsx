@@ -1,9 +1,7 @@
-
-
 export const getSellerProducts = async () => {
   try {
     const response = await fetch(
-      "https://e-commerce-ecuo.onrender.com/api/products/seller"
+      "https://e-commerce-project-l7gm.onrender.com/api/products/seller"
     );
     const data = await response.json();
     return data;
@@ -16,7 +14,7 @@ export const getSellerProducts = async () => {
 export const addProduct = async (product) => {
   try {
     const response = await fetch(
-      "https://e-commerce-ecuo.onrender.com/api/products",
+      "https://e-commerce-project-l7gm.onrender.com/api/products",
       {
         method: "POST",
         headers: {
@@ -36,7 +34,7 @@ export const addProduct = async (product) => {
 export const removeProduct = async (productId) => {
   try {
     const response = await fetch(
-      `https://e-commerce-ecuo.onrender.com/api/products/${productId}`,
+      `https://e-commerce-project-l7gm.onrender.com/api/products/${productId}`,
       {
         method: "DELETE",
       }
@@ -47,12 +45,12 @@ export const removeProduct = async (productId) => {
     console.error("Error removing product:", error);
     return { success: false };
   }
-}
+};
 
 export const updateProduct = async (product) => {
   try {
     const response = await fetch(
-      `https://e-commerce-ecuo.onrender.com/api/products/${product.id}`,
+      `https://e-commerce-project-l7gm.onrender.com/api/products/${product.id}`,
       {
         method: "PUT",
         headers: {

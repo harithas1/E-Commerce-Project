@@ -20,7 +20,6 @@ const addProduct = async ({
     throw new Error("Category not found");
   }
 
-
   const newProduct = await prisma.product.create({
     data: {
       sellerId,
@@ -38,8 +37,6 @@ const addProduct = async ({
 
 // ----------------------------------------------------------------------------------------
 
-
-
 const updateProduct = async ({
   productId,
   title,
@@ -49,7 +46,7 @@ const updateProduct = async ({
   image,
 }) => {
   console.log("Updating product...");
- 
+
   const existingProduct = await prisma.product.findUnique({
     where: { id: productId },
   });
@@ -72,10 +69,7 @@ const updateProduct = async ({
   return updatedProduct;
 };
 
-
 // ----------------------------------------------------------------------------------------
-
-
 
 const deleteProduct = async (productId) => {
   console.log("Deleting product...");
@@ -96,8 +90,6 @@ const deleteProduct = async (productId) => {
 
 // ----------------------------------------------------------------------------------------
 
-
-
 const listProductsBySeller = async (sellerId) => {
   console.log("Listing products by seller...");
   const products = await prisma.product.findMany({
@@ -111,7 +103,7 @@ const listProductsBySeller = async (sellerId) => {
 
 const addCategory = async (categoryName) => {
   console.log("Adding category...");
-  
+
   const newCategory = await prisma.category.create({
     data: {
       name: categoryName,
@@ -123,47 +115,39 @@ const addCategory = async (categoryName) => {
 
 // ----------------------------------------------------------------------------------------
 
-
 const getAllCategories = async () => {
   console.log("Fetching all categories...");
   const categories = await prisma.category.findMany();
   return categories;
 };
 
-
-
-//  return fetch(`https://e-commerce-ecuo.onrender.com/api/products/${productId}`)
-
-   
+//  return fetch(`https://e-commerce-project-l7gm.onrender.com/api/products/${productId}`)
 
 const productById = async (productId) => {
   console.log("Fetching product by ID...");
-   const product = await prisma.product.findUnique({
-     where: { id: productId },
-     include: {
-       category: true, 
-       reviews: true, 
-      
-     },
-   });
+  const product = await prisma.product.findUnique({
+    where: { id: productId },
+    include: {
+      category: true,
+      reviews: true,
+    },
+  });
 
-   return product;
+  return product;
 };
-
 
 // ----------------------------------------------------------------------------------------
 
-
 const getAllProducts = async (page, pageSize = 10) => {
   console.log("Fetching all products...");
-  
+
   try {
     const products = await prisma.product.findMany({
-      skip: (page - 1) * pageSize, 
+      skip: (page - 1) * pageSize,
       take: pageSize,
       include: {
-        category: true,  
-        reviews: true,  
+        category: true,
+        reviews: true,
       },
     });
 
@@ -171,7 +155,7 @@ const getAllProducts = async (page, pageSize = 10) => {
 
     return {
       data: products,
-      totalPages: Math.ceil(totalProducts / pageSize),  
+      totalPages: Math.ceil(totalProducts / pageSize),
     };
   } catch (error) {
     console.error("Error fetching products:", error);
@@ -183,7 +167,7 @@ const getAllProducts = async (page, pageSize = 10) => {
 
 const getHomePageProducts = async (limit = 10) => {
   console.log("Fetching home page products...");
-  
+
   try {
     const [bestSellers, newestArrivals] = await Promise.all([
       prisma.product.findMany({
@@ -206,21 +190,16 @@ const getHomePageProducts = async (limit = 10) => {
           reviews: true,
         },
       }),
-      
     ]);
 
     return { bestSellers, newestArrivals };
   } catch (error) {
-
     console.error("Error fetching home page products:", error);
     throw new Error("Failed to fetch home page products");
   }
 };
 
-
 // ----------------------------------------------------------------------------------------
-
-
 
 module.exports = {
   addProduct,

@@ -42,7 +42,7 @@ function Login({ setUser }) {
 
     try {
       const response = await axios.post(
-        "https://e-commerce-ecuo.onrender.com/api/auth/login",
+        "https://e-commerce-project-l7gm.onrender.com/api/auth/login",
 
         formData
       );
@@ -61,8 +61,8 @@ function Login({ setUser }) {
           user: response.data.user,
         });
 
-         console.log("Token stored:", response.data.token);
-         console.log("User stored:", response.data.user);
+        console.log("Token stored:", response.data.token);
+        console.log("User stored:", response.data.user);
 
         setMessage({
           type: "success",
