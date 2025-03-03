@@ -11,7 +11,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://e-commerce-haritha.netlify.app",
+    origin: "https://e-commerce-HMSK.netlify.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type"],
     credentials: true,
@@ -19,7 +19,7 @@ app.use(
 );
 
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://e-commerce-haritha.netlify.app");
+  res.header("Access-Control-Allow-Origin", "https://e-commerce-HMSK.netlify.app");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
   res.header("Access-Control-Allow-Credentials", "true");
