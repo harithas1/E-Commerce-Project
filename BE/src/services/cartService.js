@@ -106,6 +106,7 @@ const updateCartQuantity = async ({ userId, productId, quantity }) => {
     throw new Error("Missing required fields");
   }
 
+ 
   const parsedProductId = parseInt(productId, 10);
   const parsedQuantity = parseInt(quantity, 10);
 
@@ -143,13 +144,12 @@ const updateCartQuantity = async ({ userId, productId, quantity }) => {
   const updatedCartItem = await prisma.cart.update({
     where: { id: existingCartItem.id },
     data: {
-      quantity: parsedQuantity, 
+      quantity: parsedQuantity,
     },
   });
 
   return updatedCartItem;
 };
-
 
 
 module.exports = {
