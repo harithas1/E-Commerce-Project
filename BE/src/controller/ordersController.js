@@ -6,7 +6,7 @@ const {
 } = require("../services/orderService");
 
 
-// Endpoint to create a new order (checkout)
+// to (checkout)
 const create_order = async (req, res) => {
   const { userId, shippingAddress } = req.body;
 
@@ -44,7 +44,7 @@ const get_orders = async (req, res) => {
   }
 }
 
-// Endpoint to get all orders for a seller
+//  to get all orders for a seller
 const get_seller_orders = async (req, res) => {
   const { sellerId } = req.params;
 
@@ -62,7 +62,7 @@ const get_seller_orders = async (req, res) => {
   }
 }
 
-// Endpoint to update the order status (only for sellers)
+// to update the order status (only for sellers)
 const update_order_status = async (req, res) => {
   const { orderId } = req.params;
   const { sellerId, status } = req.body;

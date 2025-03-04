@@ -13,6 +13,8 @@ router.get("/orders/:userId", get_orders);
 router.get("/orders/seller/:sellerId", get_seller_orders);
 router.patch("/orders/:orderId/status", update_order_status);
 
+module.exports = router;
+
 
 // get all routes with prefix /api/orders with params/query
 
