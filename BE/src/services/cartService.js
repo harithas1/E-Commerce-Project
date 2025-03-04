@@ -1,4 +1,4 @@
-const prisma = require("../prisma/prismaClient");
+const prisma = require("../prisma/prismaClient.js");
 
 const addToCart = async ({ userId, productId, quantity }) => {
   if (!userId || !productId || !quantity) {
@@ -97,7 +97,7 @@ const clearCart = async (userId) => {
   };
 };
 
-export const updateCartQuantity = async (userId, productId, quantity) => {
+const updateCartQuantity = async (userId, productId, quantity) => {
   try {
     const cartItem = await prisma.cart.findFirst({
       where: { userId, productId },

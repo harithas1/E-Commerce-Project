@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const prisma = require("../prisma/prismaClient");
+const prisma = require("../prisma/prismaClient.js");
 const sendEmail = require("../utils/mailer");
 
 const JWT_SECRET = "subbu7hari27usha01gowthu01hema29"; // Move this to .env in production

@@ -1,7 +1,4 @@
-const prisma = require("../prisma/prismaClient");
-
-
-
+const prisma = require("../prisma/prismaClient.js");
 
 const addToWishlist = async (userId, productId) => {
   try {
@@ -11,15 +8,13 @@ const addToWishlist = async (userId, productId) => {
         productId,
       },
     });
-    
+
     return wishlistItem;
   } catch (error) {
     console.error("Error adding to wishlist:", error);
     throw new Error("Failed to add to wishlist");
   }
 };
-
-
 
 const removeFromWishlist = async (userId, productId) => {
   try {
@@ -32,7 +27,7 @@ const removeFromWishlist = async (userId, productId) => {
     }
 
     await prisma.wishlist.delete({
-      where: { id: wishlistItem.id }, 
+      where: { id: wishlistItem.id },
     });
 
     return { success: true, message: "Removed from wishlist" };
@@ -41,8 +36,6 @@ const removeFromWishlist = async (userId, productId) => {
     throw new Error("Failed to remove from wishlist");
   }
 };
-
-
 
 const getWishlist = async (userId) => {
   try {
@@ -59,10 +52,8 @@ const getWishlist = async (userId) => {
   }
 };
 
-
-
 module.exports = {
   addToWishlist,
   removeFromWishlist,
-  getWishlist
+  getWishlist,
 };
