@@ -23,7 +23,7 @@ const registerUser = async ({ name, email, password, role }) => {
   });
 
   // to Send verification email
-  const verificationLink = `http://localhost:5173/api/auth/verify-email?token=${emailVerificationToken}`;
+  const verificationLink = `https://e-commerce-hmsk.netlify.app/api/auth/verify-email?token=${emailVerificationToken}`;
   const emailContent = `
     <h2>Verify Your Email</h2>
     <p>Click the link below to verify your email:</p>
@@ -46,11 +46,8 @@ const verifyEmail = async (token) => {
       where: { id: decoded.userId },
       data: { emailVerified: true },
     });
-    const message=`<h2>Email Verified Successfully!</h2>
-    <p>Thank you for verifying your email. You can now log in to your account.</p> 
-    <a href="http://localhost:5173/login">Click here to log in</a>`
 
-    return { message };
+    return { message: "Email verified successfully!" };
   } catch (error) {
     throw new Error("Invalid or expired token");
   }
