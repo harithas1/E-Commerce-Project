@@ -6,6 +6,7 @@ const cartRoutes = require("./routes/cartRoutes");
 const wishlistRoutes = require("./routes/wishlistRoutes");
 const reviewRoutes = require("./routes/reviewsRoutes");
 const sellerRoutes = require("./routes/sellerRoutes");
+const orderRoutes = require("./routes/ordersRoutes");
 
 const app = express();
 
@@ -62,5 +63,8 @@ app.get("/test", (req, res) => {
 
 // Add wishlist routes
 app.use("/api/wishlist", wishlistRoutes);
+
+// Add order routes
+app.use("/api/orders", orderRoutes);
 
 module.exports = app;

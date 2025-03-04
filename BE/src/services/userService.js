@@ -47,9 +47,7 @@ const verifyEmail = async (token) => {
       data: { emailVerified: true },
     });
     const message = `
-    <h2>Email Verified</h2>
-    <p>Your email has been successfully verified.</p>
-    <a href="http://localhost:5173/login">Login</a>
+    <h2> Your email has been successfully verified </h2>
     `;
 
     return { message: message };
