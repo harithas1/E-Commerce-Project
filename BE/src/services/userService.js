@@ -23,7 +23,7 @@ const registerUser = async ({ name, email, password, role }) => {
   });
 
   // to Send verification email
-  const verificationLink = `https://e-commerce-hmsk.netlify.app/api/auth/verify-email?token=${emailVerificationToken}`;
+  const verificationLink = `https://e-commerce-project-l7gm.onrender.com/api/auth/verify-email?token=${emailVerificationToken}`;
   const emailContent = `
     <h2>Verify Your Email</h2>
     <p>Click the link below to verify your email:</p>
