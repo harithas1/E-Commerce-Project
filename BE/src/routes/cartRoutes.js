@@ -4,6 +4,7 @@ const {
   get_cart_items,
   remove_from_cart,
   clear_cart,
+  update_cart_quantity
 } = require("../controller/cartController");
 
 const router = express.Router();
@@ -19,6 +20,9 @@ router.delete("/remove", remove_from_cart);
 
 // Clear the cart
 router.delete("/clear", clear_cart);
+
+// Update the quantity of a product in the cart
+router.put("/updatequantity", update_cart_quantity);
 
 module.exports = router;
 
@@ -38,3 +42,7 @@ module.exports = router;
 // 4. Clear cart -- method: DELETE
 //    Endpoint: https://e-commerce-project-l7gm.onrender.com/api/cart/clear
 //    Example: https://e-commerce-project-l7gm.onrender.com/api/cart/clear?userId={userId}
+
+// 5. Update cart quantity -- method: PUT
+//    Endpoint: https://e-commerce-project-l7gm.onrender.com/api/cart/updatequantity
+//    Body: { userId, productId, quantity }

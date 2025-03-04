@@ -127,7 +127,7 @@ const deleteProduct = async ({ productId, sellerId }) => {
     where: { productId: productId },
   });
 
-  // Now, safely delete the product
+
   const deletedProduct = await prisma.product.delete({
     where: { id: productId },
   });

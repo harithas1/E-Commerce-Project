@@ -3,6 +3,7 @@ const {
   getCartItems,
   removeFromCart,
   clearCart,
+  updateCartQuantity
 } = require("../services/cartService");
 
 // Controller to add a product to the cart
@@ -85,9 +86,24 @@ const clear_cart = async (req, res) => {
   }
 };
 
+
+const update_cart_quantity = async (req, res) => {
+  try {
+    const { userId, productId, quantity } = req.body;
+    const response = await updateCartQuantity({ userId:parseInt(userId), productId:parseInt(productId), quantity:parseInt(quantity) });
+    return res.status(200).json({ success: true, ...response });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+
+
+
 module.exports = {
   add_to_cart,
   get_cart_items,
   remove_from_cart,
   clear_cart,
+  update_cart_quantity
 };

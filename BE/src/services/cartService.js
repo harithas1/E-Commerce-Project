@@ -110,9 +110,42 @@ const clearCart = async (userId) => {
   };
 };
 
+
+
+
+export const updateCartQuantity = async (userId, productId, quantity) => {
+  try {
+   
+    const cartItem = await prisma.cart.findFirst({
+      where: { userId, productId },
+    });
+
+    if (!cartItem) {
+      throw new Error("Cart item not found");
+    }
+
+    if (quantity < 1) {
+      await prisma.cart.delete({
+        where: { id: cartItem.id },
+      });
+      return { message: "Item removed from cart" };
+    }
+    const updatedCart = await prisma.cart.update({
+      where: { id: cartItem.id },
+      data: { quantity },
+    });
+
+    return updatedCart;
+  } catch (error) {
+    console.error("Error updating cart quantity:", error);
+    throw error;
+  }
+};
+
 module.exports = {
   addToCart,
   getCartItems,
   removeFromCart,
   clearCart,
+  updateCartQuantity
 };
