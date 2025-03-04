@@ -1,4 +1,4 @@
-import prisma from "../prisma/prismaClient";
+const prisma = require("../prisma/prismaClient");
 
 const addToCart = async ({ userId, productId, quantity }) => {
   if (!userId || !productId || !quantity) {
