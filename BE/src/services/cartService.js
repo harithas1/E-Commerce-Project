@@ -1,7 +1,4 @@
-const prisma = require("../prisma/prismaClient");
-
-
-
+import prisma from "../prisma/prismaClient";
 
 const addToCart = async ({ userId, productId, quantity }) => {
   if (!userId || !productId || !quantity) {
@@ -23,7 +20,6 @@ const addToCart = async ({ userId, productId, quantity }) => {
   const existingCartItem = await prisma.cart.findFirst({
     where: { userId, productId },
   });
-  
 
   if (existingCartItem) {
     if (existingCartItem.quantity + quantity < 1) {
@@ -34,10 +30,9 @@ const addToCart = async ({ userId, productId, quantity }) => {
       data: {
         quantity: existingCartItem.quantity + quantity,
       },
-    })
+    });
     return updatedCartItem;
   } else {
-   
     const newCartItem = await prisma.cart.create({
       data: {
         userId,
@@ -48,7 +43,6 @@ const addToCart = async ({ userId, productId, quantity }) => {
     return newCartItem;
   }
 };
-
 
 const getCartItems = async (userId) => {
   if (!userId) throw new Error("userId is required.");
@@ -72,9 +66,6 @@ const getCartItems = async (userId) => {
   return cartItems;
 };
 
-
-
-
 const removeFromCart = async ({ userId, productId }) => {
   if (!userId || !productId)
     throw new Error("userId and productId are required.");
@@ -89,10 +80,6 @@ const removeFromCart = async ({ userId, productId }) => {
 
   return { message: "Item removed from cart", deletedItem: existingCartItem };
 };
-
-
-
-
 
 // Service to clear all items in the cart for a user
 const clearCart = async (userId) => {
@@ -110,12 +97,8 @@ const clearCart = async (userId) => {
   };
 };
 
-
-
-
 export const updateCartQuantity = async (userId, productId, quantity) => {
   try {
-   
     const cartItem = await prisma.cart.findFirst({
       where: { userId, productId },
     });
@@ -147,5 +130,5 @@ module.exports = {
   getCartItems,
   removeFromCart,
   clearCart,
-  updateCartQuantity
+  updateCartQuantity,
 };
