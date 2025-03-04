@@ -21,16 +21,11 @@ const register_user = async (req, res) => {
 const verify_email = async (req, res) => {
   try {
     const response = await verifyEmail(req.query.token);
-
-    res.status(200).json({
-      message: response.message, 
-      redirect: response.redirect, 
-    });
+    res.status(200).json(response);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
-
 
 const login_user = async (req, res) => {
   try {
