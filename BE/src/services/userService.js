@@ -46,8 +46,11 @@ const verifyEmail = async (token) => {
       where: { id: decoded.userId },
       data: { emailVerified: true },
     });
+    const message=`<h2>Email Verified Successfully!</h2>
+    <p>Thank you for verifying your email. You can now log in to your account.</p> 
+    <a href="http://localhost:5173/login">Click here to log in</a>`
 
-    return { message: "Email verified successfully!" };
+    return { message };
   } catch (error) {
     throw new Error("Invalid or expired token");
   }
