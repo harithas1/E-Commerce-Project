@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const prisma = require("../prisma/prismaClient.js");
+const prisma = require("../prisma/prismaClient");
 const sendEmail = require("../utils/mailer");
 
 const JWT_SECRET = "subbu7hari27usha01gowthu01hema29"; // Move this to .env in production
@@ -23,16 +23,17 @@ const registerUser = async ({ name, email, password, role }) => {
   });
 
   // to Send verification email
-  const verificationLink = `https://e-commerce-project-l7gm.onrender.com/api/auth/verify-email?token=${emailVerificationToken}`;
+  const verificationLink = `http://localhost:5173/api/auth/verify-email?token=${emailVerificationToken}`;
   const emailContent = `
     <h2>Verify Your Email</h2>
     <p>Click the link below to verify your email:</p>
     <a href="${verificationLink}">Verify Email</a>
+    
   `;
   await sendEmail(newUser.email, "Email Verification", emailContent);
 
   return {
-    message: "Registration successful! Check your email for verification.",
+    message: "Registration successful. Please check your email for verification.",
   };
 };
 
@@ -47,7 +48,7 @@ const verifyEmail = async (token) => {
       data: { emailVerified: true },
     });
 
-    return { message: "Email verified successfully!" };
+    return { message: "Email verified successfully!", redirect: "http://localhost:5173/login" };
   } catch (error) {
     throw new Error("Invalid or expired token");
   }
