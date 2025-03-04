@@ -101,33 +101,39 @@ const clearCart = async (userId) => {
 
 
 
-
 const updateCartQuantity = async ({ userId, productId, quantity }) => {
   if (!userId || !productId || quantity === undefined) {
     throw new Error("Missing required fields");
   }
 
+  const parsedProductId = parseInt(productId, 10);
+  const parsedQuantity = parseInt(quantity, 10);
+
+  if (isNaN(parsedProductId) || isNaN(parsedQuantity)) {
+    throw new Error("Invalid productId or quantity, they must be integers.");
+  }
+
   const product = await prisma.product.findUnique({
-    where: { id: productId },
+    where: { id: parsedProductId },
   });
 
   if (!product) {
     throw new Error("Product not found");
   }
 
-  if (quantity > product.stock) {
+  if (parsedQuantity > product.stock) {
     throw new Error(`Only ${product.stock} items available in stock`);
   }
 
   const existingCartItem = await prisma.cart.findFirst({
-    where: { userId, productId },
+    where: { userId, productId: parsedProductId },
   });
 
   if (!existingCartItem) {
     throw new Error("Item not found in the cart");
   }
 
-  if (quantity < 1) {
+  if (parsedQuantity < 1) {
     await prisma.cart.delete({
       where: { id: existingCartItem.id },
     });
@@ -137,13 +143,12 @@ const updateCartQuantity = async ({ userId, productId, quantity }) => {
   const updatedCartItem = await prisma.cart.update({
     where: { id: existingCartItem.id },
     data: {
-      quantity,
+      quantity: parsedQuantity, 
     },
   });
 
   return updatedCartItem;
 };
-
 
 
 
