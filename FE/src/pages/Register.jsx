@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios"; // Import axios for API requests
+import axios from "axios"; 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Toaster } from "@/components/ui/sonner";
@@ -15,7 +14,6 @@ function Register() {
   });
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState({ type: "", text: "" });
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -24,26 +22,17 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setMessage({ type: "", text: "" }); // Clear previous messages
-    console.log(formData);
+    setMessage({ type: "", text: "" }); 
 
     try {
       const response = await axios.post(
         "https://e-commerce-project-l7gm.onrender.com/api/auth/register",
         formData
       );
+      setMessage({ type: "success", text: response.data.message });
 
-      if (response.data.message) {
-        setMessage({ type: "success", text: response.data.message });
-        setTimeout(() => navigate("/login"), 2000); // Redirect after delay
-      } else {
-        setMessage({
-          type: "error",
-          text: response.data.error || "Something went wrong",
-        });
-      }
     } catch (error) {
-      setMessage({ type: "error", text: "Network error" });
+      setMessage({ type: "error", text: error.response.data.message });
     } finally {
       setLoading(false);
     }

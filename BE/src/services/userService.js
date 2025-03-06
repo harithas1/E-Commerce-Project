@@ -1,9 +1,10 @@
+require("dotenv").config();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const prisma = require("../prisma/prismaClient");
 const sendEmail = require("../utils/mailer");
 
-const JWT_SECRET = "subbu7hari27usha01gowthu01hema29"; // Move this to .env in production
+const JWT_SECRET = process.env.JWT_SECRET;
 
 // Register User
 const registerUser = async ({ name, email, password, role }) => {

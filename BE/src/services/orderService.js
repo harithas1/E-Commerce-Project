@@ -1,5 +1,6 @@
 const prisma = require("../prisma/prismaClient.js");
 
+
 // Create a new order
 const createOrder = async (userId, shippingAddress) => {
   if (!userId || !shippingAddress)
@@ -94,6 +95,8 @@ const updateOrderStatus = async (orderId, sellerId, status) => {
 
   return updatedOrder;
 };
+
+
 
 module.exports = {
   createOrder,

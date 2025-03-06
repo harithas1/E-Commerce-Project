@@ -19,25 +19,11 @@ function Login({ setUser }) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // const loginUser = async ({ email, password }) => {
-  //   const user = await prisma.user.findUnique({ where: { email } });
-  //   if (!user) throw new Error("Invalid email or password");
-
-  //   // Check password
-  //   const isValid = await bcrypt.compare(password, user.password);
-  //   if (!isValid) throw new Error("Invalid email or password");
-
-  //   // Generate JWT
-  //   const token = jwt.sign({ userId: user.id, role: user.role }, JWT_SECRET, {
-  //     expiresIn: "7d",
-  //   });
-
-  //   return { message: "Login successful", token };
-  // };
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setMessage({ type: "", text: "" }); // Clear previous messages
+    setMessage({ type: "", text: "" }); 
     console.log(JSON.stringify(formData));
 
     try {
@@ -46,6 +32,8 @@ function Login({ setUser }) {
 
         formData
       );
+      console.log(response);
+      
       // const data=response
       console.log(response.data.message === "Login successful");
 

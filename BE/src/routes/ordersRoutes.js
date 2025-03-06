@@ -18,7 +18,7 @@ module.exports = router;
 
 // get all routes with prefix /api/orders with params/query
 
-// 1. create order -- method: POST -- endpoint: https://e-commerce-project-l7gm.onrender.com/api/orders/checkout -- body: {userId, productId, quantity}
+// 1. create order -- method: POST -- endpoint: https://e-commerce-project-l7gm.onrender.com/api/orders/checkout -- body: {userId, shippingAddress}
 
 // 2. get orders -- method: GET -- endpoint: https://e-commerce-project-l7gm.onrender.com/api/orders/orders/:userId -- params: {userId}
 

@@ -4,7 +4,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import SellerDashboard from "./pages/SellerDashboard";
-import Checkout from "./pages/Checkout";
+// import Checkout from "./pages/Checkout";
 import { Toaster } from "@/components/ui/sonner";
 
 const PrivateRoute = ({ element, isAuthenticated }) => {
@@ -84,10 +84,11 @@ function App() {
             />
           }
         />
-        <Route
+       
+        {/* <Route
           path="/checkout"
-          element={<PrivateRoute element={<Checkout />} isAuthenticated={user?.token} />}
-        />
+          element={<PrivateRoute element={<Checkout user={user?.user} />} isAuthenticated={user?.token} />}
+        /> */}
         {/* Default Redirect */}
         <Route
           path="*"

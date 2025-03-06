@@ -467,8 +467,7 @@ ________________________________________________________________
 
 INSERT INTO "Product" ("title", "description", "categoryId", "price", "stock", "image", "sellerId", "createdAt", "updatedAt") 
 VALUES 
-('The Alchemist', 'Bestselling novel by Paulo Coelho about following your dreams', 4, 259.99, 120, 'https://m.media-amazon.com/images/I/61HAE8zahLL._SL1331_.jpg', 1, now(), now()),
-('Atomic Habits', 'A guide to building good habits and breaking bad ones by James Clear', 4, 349.99, 90, 'https://gyaanstore.com/cdn/shop/files/230_2581bdfc-eb21-4ecd-b310-4f79a6f8de88.png?v=1701690380&width=823', 1, now(), now());
+('The Alchemist', 'Bestselling novel by Paulo Coelho about following your dreams', 4, 259.99, 120, 'https://m.media-amazon.com/images/I/61HAE8zahLL._SL1331_.jpg', 1, now(), now());
 
 
 
